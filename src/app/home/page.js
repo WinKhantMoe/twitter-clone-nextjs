@@ -1,14 +1,13 @@
 "use client";
-import MainPage from "@/features/main/pages/MainPage";
+import HomePage from "@/features/home/pages/HomePage";
 import { LoadingBarContainer } from "react-top-loading-bar";
 
-
-
-export default function Home() {
-  return ( 
+const Page = ()=>{
+  return(
     <LoadingBarContainer>
-    <MainPage />
+    <HomePage />
     </LoadingBarContainer>
-   
-)
+  )
 }
+
+export default Page;
