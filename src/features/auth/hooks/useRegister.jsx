@@ -21,12 +21,12 @@ const useRegister = () => {
     start();
     try{
       const {data:response,error} = await supabase.storage.from('Users').upload(data.username,data.user_profile_image);
-      console.log(response);
+      
       const {data:imageURL} = supabase.storage.from('Users').getPublicUrl(response.path);
-      console.log(imageURL);
+      
       data.user_profile_image = imageURL.publicUrl;
       const res = await Register(data);
-      console.log(res);
+      
       const json = res.json();
 
       if(!res.ok){
@@ -38,13 +38,12 @@ const useRegister = () => {
       complete();
       
     }catch(error){
-      console.log(error);
+      
     }
 
         
       
-    // console.log(data);
-    // console.log(data.userTag, data.phone, data.email, data.name, data.day, data.month, data.year);
+    
   };
 
   return {

@@ -65,7 +65,7 @@ const useTweet = () => {
         
 
       }catch(error){
-        console.log(error);
+        
       }
       reset();
       complete();

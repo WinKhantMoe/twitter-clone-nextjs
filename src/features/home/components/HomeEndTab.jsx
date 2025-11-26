@@ -22,10 +22,10 @@ const HomeEndTab = ()=>{
     usersSize,
     setUsersSize
   } = useFormContext();
-  console.log(data);
+  
   const scrollTopForEndTab = watch("scrollTopForEndTab");
   const handleMoreUsers = () =>{
-    console.log(usersSize);
+    
     setUsersSize(usersSize + 1);
   }
   useEffect(()=>{
@@ -46,7 +46,7 @@ const HomeEndTab = ()=>{
   useEffect(()=>{
     if(!searchIsOpen) return;
     const handleClickOutside = (event) => {
-      console.log("clicked outside");
+      
       if (clickRef.current && !clickRef.current.contains(event.target)) {
         setSearchIsOpen(false);
         searchRef.current.blur();

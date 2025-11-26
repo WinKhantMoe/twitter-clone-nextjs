@@ -27,14 +27,7 @@ const SignUpProfile = () => {
     const file = event.target.files[0];
     if(!file) return ;
     setPreviewImage(URL.createObjectURL(file));
-    // console.log(URL.createObjectURL(file));
-    // const arrayBuffer = await file.arrayBuffer();
-    // console.log(arrayBuffer);
-    // const unit8array = new Uint8Array(arrayBuffer);
-    // console.log(unit8array);
-    // const imageString = unit8array.toBase64();
-    // console.log(imageString);
-    // const completeString = `data:${file.type};base64,${imageString}`;
+    
     setValue('user_profile_image',file);
     
       

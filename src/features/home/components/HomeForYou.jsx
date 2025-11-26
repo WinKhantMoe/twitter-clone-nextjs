@@ -7,8 +7,7 @@ import { useFormContext } from "react-hook-form";
 const HomeForYou = () => {
   const {tweetsData,tweets,size,setSize} = useFormContext();
   const bottomRef = useRef(null);
-  console.log(tweets);
-  console.log(tweetsData);
+  
 
   useEffect(()=>{
     if(!bottomRef.current) return;

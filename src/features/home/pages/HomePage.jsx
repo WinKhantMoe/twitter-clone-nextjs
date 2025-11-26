@@ -17,12 +17,7 @@ const HomePage = () =>{
     <div  className=" bg-black flex h-screen overflow-hidden ">
       <FormProvider {...methods} >
         <SideNav />
-      <div 
-      onScroll={(e)=>{
-        console.log(e.target.scrollTop);
-        methods.setValue("scrollTopForEndTab",e.target.scrollTop);
-      }}
-      className="flex overflow-y-auto scrollbar-thumb-hover">
+      <div className="flex overflow-y-auto scrollbar-thumb-hover">
         <HomeMiddleTab />
         <HomeEndTab />
       </div>

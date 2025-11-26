@@ -13,7 +13,6 @@ const SignUpVerify = ({verifyTarget}) => {
     formState: { errors },
   } = useFormContext();
   const {tableSignUpUser} = useRegister();
-  console.log(passwordPage);
   const goToPassword = () => setPasswordPage(true);
   const verifier = watch("verifier");
     return(

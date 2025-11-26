@@ -23,7 +23,7 @@ const SignUpUserTag = () => {
     const endTag = parseInt(Math.random() * 1000);
     const firstNewTag = tag + endTag;
     const secNewTag = tag + "_" + endTag;
-    console.log(firstNewTag, secNewTag);
+    
 
     const existingUserTags = new Set(allUsers.map((user) => user.userTag));
 
@@ -34,11 +34,10 @@ const SignUpUserTag = () => {
     if (!existingUserTags.has(secNewTag)) {
       newSuggestions.push(secNewTag);
     }
-    console.log(existingUserTags);
-    console.log(newSuggestions);
+    
     setUserTagSuggestions((prevSuggestions) => {
       const suggestionSet = new Set(prevSuggestions);
-      console.log(suggestionSet);
+      
       return [
         ...suggestionSet,
         ...newSuggestions.filter((tag) => !suggestionSet.has(tag)),
@@ -54,15 +53,14 @@ const SignUpUserTag = () => {
     if (userTag !== undefined && allUsers?.length > 0) {
       allUsers.map((user) => {
         if (user.userTag === userTag) {
-          console.log("Tag found");
+          
           
           setUserTagTaken(true);
           createEndTag(userTag);
         }
       });
     }
-    console.log(userTagSuggestions);
-    console.log(allUsers);
+    
   }, [userTag]);
   return (
     <>

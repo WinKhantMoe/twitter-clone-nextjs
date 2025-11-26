@@ -3,7 +3,7 @@ import useAccountStore from "@/stores/useAccountStore"
 
 
 export const fetch3Users = async (key,token) =>{
-  console.log(token);
+  
   const res = await fetch(key,{
     method:"GET",
     headers : {

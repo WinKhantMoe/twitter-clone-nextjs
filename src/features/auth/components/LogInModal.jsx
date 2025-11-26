@@ -142,7 +142,7 @@ const LogInModal = (isOpen,onOpenChange) => {
             Next
           </button>
           <button
-            onClick={() => console.log("object")}
+            
             className={`border border-zinc-500 text-white bg-black mt-8 w-full  text-center  rounded-3xl py-1  cursor-pointer`}
           >
             Forgot password?

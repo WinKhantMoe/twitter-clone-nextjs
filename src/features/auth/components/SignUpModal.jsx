@@ -83,7 +83,7 @@ const SignUpModal = () => {
     if (currentRef) {
       observer.observe(currentRef);
     } else {
-      console.log("ref is null");
+      
     }
     return () => {
       if (currentRef) {
@@ -103,7 +103,7 @@ const SignUpModal = () => {
       }
     };
     fetchData();
-    console.log("done");
+    
   }, []);
   return (
     <>

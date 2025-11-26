@@ -10,7 +10,7 @@ export const ChooseAudience = () => {
   useEffect(()=>{
       if(!isOpen) return;
       const handleClickOutside = (event) => {
-        console.log("clicked outside");
+        
         if (clickRef.current && !clickRef.current.contains(event.target)) {
           setIsOpen(false);
           event.stopPropagation();

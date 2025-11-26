@@ -40,10 +40,9 @@ const useLogIn = () => {
         data.user.user_profile_image,
         "user_profile_image"
       );
-      console.log(file);
-      console.log(URL.createObjectURL(file));
+      
       data.user.user_profile_image = file;
-      console.log(data.user);
+
       setToken(data.accessToken);
       setAccount(data.safeUser);
     } else {
