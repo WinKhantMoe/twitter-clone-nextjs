@@ -30,7 +30,7 @@ const HomeMiddleTab = () => {
           <img src="/default_user.svg" className="p-2 size-12 rounded-full" />
         )}
         <div className={`flex-1 ${draftOpen === false && "flex  flex-col"}`}>
-          {draftOpen && <ChooseAudience />}
+          {draftOpen && <ChooseAudience  />}
 
           <input
             onClick={() => setDraftOpen(true)}

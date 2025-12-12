@@ -4,19 +4,21 @@ import { set, useForm } from "react-hook-form";
 import useAccountStore from "@/stores/useAccountStore";
 import { useRouter } from "next/navigation";
 import { use } from "react";
-import { Login } from "@/services/auth";
+import { GoogleLogin, Login } from "@/services/auth";
 import { base64ToArrayBuffer, base64ToFile } from "@/services/image";
 
 const useLogIn = () => {
   const methods = useForm({ mode: "all" });
   const router = useRouter();
-  const { setAccount, setToken } = useAccountStore();
+  const { setAccount, setToken,logout } = useAccountStore();
   const { start, complete } = useLoadingBar({
     color: "white",
     height: 2,
   });
 
+  
   const tableLogInUser = async (values) => {
+    logout();
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     const phoneRegex = /^\+?[0-9\s\-().]{7,15}$/;
     start();

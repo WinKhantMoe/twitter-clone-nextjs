@@ -1,11 +1,15 @@
 import { ChevronDown, Globe,Check } from "lucide-react";
 import { FaGlobe, FaChevronDown } from "react-icons/fa";
 import { useState,useEffect,useRef } from "react";
+import { useFormContext } from "react-hook-form";
 
 export const ChooseAudience = () => {
   const [isOpen, setIsOpen] = useState(false);
   const clickRef = useRef(null);
   const [chosenAudience,setChosenAudience] = useState("everyone")
+  
+
+  
 
   useEffect(()=>{
       if(!isOpen) return;
@@ -23,7 +27,7 @@ export const ChooseAudience = () => {
       };
     },[isOpen])
   return (
-    <div className="mb-5 ml-2">
+    <div className={`mb-5 ml-2 relative overflow-visible `}>
       <div
         onClick={() => setIsOpen(!isOpen)}
         className="flex active:bg-blue-500 transition-all duration-400 cursor-pointer items-center gap-3 text-md text-blue-500 border border-zinc-500 shadow-lg  w-fit px-3 rounded-xl"
@@ -38,7 +42,7 @@ export const ChooseAudience = () => {
         ref={clickRef}
         className={`absolute  ${
           isOpen ? "block" : "hidden"
-        }  bg-black mt-2 h-2/3 w-1/5 left-1/7 rounded-2xl shadow-custom z-20 `}
+        }  bg-black mt-2 w-1/2 -left-5 pb-20 rounded-2xl shadow-custom z-30 `}
       >
         <h3 className="text-xl p-2 font-bold">Choose audience</h3>
         <div className="mt-1">

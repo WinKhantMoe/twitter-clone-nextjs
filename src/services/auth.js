@@ -20,3 +20,13 @@ export const Login = (data) =>{
     }
   })
 }
+export const googleLogin = (data) =>{
+  return fetch(process.env.NEXT_PUBLIC_DATABASE_URL + "/auth/googleLogin",{
+    method:"POST",
+    body:JSON.stringify(data),
+    headers : {
+      "Content-Type" : "application/json",
+      Accept : "*/*"
+    }
+  })
+}

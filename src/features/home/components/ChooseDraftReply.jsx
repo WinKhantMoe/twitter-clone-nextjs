@@ -2,15 +2,16 @@ import { Globe,Check,UserCheck, User,BadgeCheck,AtSign } from "lucide-react"
 import { useState,useRef, useEffect, use } from "react"
 import { useFormContext } from "react-hook-form";
 
-export const ChooseReply = () =>{
+export const ChooseDraftReply = () =>{
   const [isOpen,setIsOpen] = useState(false);
   const clickRef = useRef(null);
+  console.log(isOpen);
   
   const [chosenReply,setChosenReply] = useState('everyone');
   const {getValues,watch,setValue} = useFormContext();
-  const halfPastVH = getValues("halfPastVH");
+  const draftHalfPastVH = getValues("draftHalfPastVH");
   
-
+  console.log(draftHalfPastVH);
   
   
 
@@ -44,7 +45,7 @@ export const ChooseReply = () =>{
         ref={clickRef}
         className={`absolute  ${
           isOpen ? "block" : "hidden"
-        }  bg-black w-1/2 mt-2 h-auto ${halfPastVH && "bottom-10"}   rounded-2xl shadow-custom z-20 `}
+        }  bg-black w-1/2 mt-2 h-auto ${draftHalfPastVH && "bottom-10"}   rounded-2xl shadow-custom z-20 `}
       >
         <h3 className="text-md px-3 mt-2 font-bold">Who can reply?</h3>
         <h2 className="px-3 text-md text-zinc-500">Choose who can reply to this post.</h2>

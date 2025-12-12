@@ -6,11 +6,11 @@ import { useFormContext } from "react-hook-form"
 import { FaXing } from "react-icons/fa";
 
 
-export const TweetImagePreview = () =>{
+export const DraftImagePreview = () =>{
   const {getValues,setValue,watch } = useFormContext();
-  const urls = getValues("mediaURL");
-  const media = getValues("media");
-  const halfPastVH = watch("halfPastVH");
+  const urls = getValues("draftMediaURL");
+  
+  const draftHalfPastVH = watch("draftHalfPastVH");
   const targetRef = useRef(null);
   
 
@@ -22,53 +22,51 @@ export const TweetImagePreview = () =>{
     
     return "basis-auto"
   }
+  
+    
+    
   const takeOutImageURL = (index) =>{
     const newURL = urls.filter((url) => index !== urls.indexOf(url));
-    const newMedia = media.filter((url) => index !== media.indexOf(url));
     
-    setValue("mediaURL",newURL);
-    setValue("media",newMedia);
     if(newURL.length === 0){
-      setValue("halfPastVH",false);
+      setValue("draftHalfPastVH",false);
     }
+    setValue("draftMediaURL",newURL);
+    
+     
   }
-  
   useEffect(() => {
     if (!targetRef.current) return;
     
     const observer = new IntersectionObserver(([entry]) => {
-        
-          setValue("halfPastVH",entry.isIntersecting);
-          console.log("tweet Intersect");
           
-        
-        
-        
+            setValue("draftHalfPastVH",entry.isIntersecting);
+            console.log("ttrdstydt");
+          
       
     }, {threshold: 1});
-    
     observer.observe(targetRef.current);
-    
+
     return () => observer.disconnect();
-  },[]);
+  },[count]);
   
   return(
-    <div className={`${urls?.length === 0 ? "hidden" : "block"}`} ref={targetRef}>
+    <div className={`${urls.length === 0 ? "hidden" : "block"}`} ref={targetRef}>
     <Carousel 
     
     opts = {{
       draggable: false
     }}
-    className={"mt-5 relative"}>
+    className={"mt-5 relative overflow-y-auto"}>
       <CarouselContent
         
         className={"snap-x snap-mandatory"}
         onDragStart = {(e)=> e.preventDefault()}
       >
         {urls?.map((url,index) => (
-          <CarouselItem key={index} className={`${decideCarouselSlide()} snap-start  ${decideCarouselSlide() === "basis-auto" && "w-1/2 "}`}>
-            <div className="relative">
-              <img src={url} alt="image in tweet" className={`${urls.length > 1 ? "h-40" : "h-full"} object-cover w-full  rounded-lg`}/>
+          <CarouselItem key={index} className={`${decideCarouselSlide()} snap-start ${decideCarouselSlide() === "basis-auto" && "w-1/2 "}`}>
+            <div className="relative ">
+              <img src={url} alt="image in tweet" className={`h-60 w-full  object-cover rounded-lg`}/>
               <XIcon onClick={() => takeOutImageURL(index)} className="absolute top-2 right-2 size-8 text-white bg-black p-2 rounded-full cursor-pointer"/>
             </div>
             

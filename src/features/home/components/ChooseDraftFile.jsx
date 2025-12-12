@@ -5,30 +5,30 @@ import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
 
 
-export const ChooseFileAttach = ({setDraftOpen}) => {
-  const {getValues,watch,register,setValue,handleCreateTweet} = useFormContext();
-  const mediaRef = useRef(null);
-  const text = watch("tweetText");
-  const media = watch("media");
-  const mediaURL = watch("mediaURL");
+export const ChooseDraftFile = ({setDraftOpen}) => {
+  const {getValues,watch,register,setValue,handleCreateDraftTweet} = useFormContext();
+  const draftMediaRef = useRef(null);
+  const text = watch("draftTweetText");
+  const media = watch("draftMedia");
+  const mediaURL = watch("draftMediaURL");
   const allData = getValues();
  
+
   const handleClick = () => {
-    mediaRef.current.click();
+    draftMediaRef.current.click();
     if(setDraftOpen){
       setDraftOpen(true);
     }
-    
   };
   const handleMediaChange = (e) =>{
     const file = e.target.files[0];
     const fileURL = URL.createObjectURL(file);
     
-    setValue("media",[...media,file]);
+    setValue("draftMedia",[...media,file]);
     if(mediaURL !== undefined){
-      setValue("mediaURL",[...mediaURL,fileURL]);
+      setValue("draftMediaURL",[...mediaURL,fileURL]);
     }else{
-      setValue("mediaURL",[fileURL]);
+      setValue("draftMediaURL",[fileURL]);
     }
     
   }
@@ -45,10 +45,10 @@ export const ChooseFileAttach = ({setDraftOpen}) => {
             type="file" 
             accept="image/*"
             multiple 
-            {...register("media")}
+            {...register("draftMedia")}
             ref={(e)=>{
-              mediaRef.current = e;
-              register("media").ref(e);
+              draftMediaRef.current = e;
+              register("draftMedia").ref(e);
               
             }}
             style={{display : "none"}}
@@ -110,7 +110,7 @@ export const ChooseFileAttach = ({setDraftOpen}) => {
             </div>
             <PlusIcon className="border cursor-pointer text-blue-500 size-6 p-1 rounded-full border-zinc-500" />
           </div>
-          <button onClick={()=>handleCreateTweet(allData)} className={`bg-white cursor-pointer ${text?.length > 0 || text === ''|| media?.length > 0 && "opacity-50 pointer-events-none"} text-black font-semibold px-4 py-1.5 rounded-3xl`}>
+          <button onClick={()=>handleCreateDraftTweet(allData)} className={`bg-white cursor-pointer ${text?.length > 0 || text === ''|| media?.length > 0 && "opacity-50 pointer-events-none"} text-black font-semibold px-4 py-1.5 rounded-3xl`}>
             Post
           </button>
         </div>

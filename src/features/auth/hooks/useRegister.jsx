@@ -22,9 +22,12 @@ const useRegister = () => {
     try{
       const {data:response,error} = await supabase.storage.from('Users').upload(data.username,data.user_profile_image);
       
-      const {data:imageURL} = supabase.storage.from('Users').getPublicUrl(response.path);
+      const {data:imageURL,error:imageURLError} = supabase.storage.from('Users').getPublicUrl(response.path);
       
       data.user_profile_image = imageURL.publicUrl;
+      if(imageURLError){
+        data.user_profile_image = null;
+      }
       const res = await Register(data);
       
       const json = res.json();

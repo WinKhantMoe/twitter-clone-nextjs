@@ -135,7 +135,12 @@ const HomeEndTab = ()=>{
           return(
             <div className="flex justify-between items-center px-2  cursor-pointer hover:bg-zinc-900" key={index}>
             <div className="flex items-center gap-2 text-white my-2">
-              <img src={user.user_profile_image} className="size-11 rounded-full" />
+              {user.user_profile_image ?
+                <img src={user.user_profile_image} className="size-11 rounded-full" />
+              :
+                <img src="/default_user.svg" className="size-11 rounded-full" />
+              }
+              
               <div className="flex flex-col ">
               <span className="text-lg hover:underline">
                 {user.username}

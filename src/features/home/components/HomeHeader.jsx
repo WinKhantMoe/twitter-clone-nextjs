@@ -21,8 +21,8 @@ const HomeHeader = () => {
             > 
             <div
                 className={`mt-2`}
-              ></div>
-              For you
+              >For you</div>
+              
               <div
                 className={`${
                   isChosenTab === "forYou" &&
@@ -40,8 +40,8 @@ const HomeHeader = () => {
             >
               <div
                 className={`mt-2`}
-              ></div>
-              Following
+              >Following</div>
+              
               <div
                 className={`${
                   isChosenTab === "following" &&

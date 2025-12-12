@@ -4,7 +4,13 @@ export const Tweet = ({tweet}) => {
   
   return (
     <div className="text-white  flex gap-2 border-b border-zinc-600 p-4 ">
-      <img src={tweet?.author.user_profile_image} className="size-12 rounded-full"/>
+      { tweet?.author.user_profile_image ?
+        <img src={tweet?.author.user_profile_image} className="size-12 rounded-full" />
+        :
+        <img src="/default_user.svg" className="size-12 rounded-full" />
+
+      }
+      
       <div className="flex-1">
         <div>
           <div className="flex  gap-1 justify-between items-center">
@@ -21,9 +27,9 @@ export const Tweet = ({tweet}) => {
           <div className="">
             {tweet?.content}
           </div>
-          <div className={`grid ${tweet?.media.length > 1  ? "grid-cols-2" : "grid-cols-1"} mt-5 gap-2`}>
+          <div className={`grid ${tweet?.media.length > 1  ? "grid-cols-2" : "grid-cols-1"} mt-5 gap-1`}>
             {tweet?.media?.map((item,index)=>(
-              <img key={index} src={item} className="w-full rounded-lg"/>
+              <img key={index} src={item} className={`w-full h-[200px] object-cover  rounded-lg ${index / 2 === 1 && "col-span-2 w-auto"}`}/>
             ))
 
             }
