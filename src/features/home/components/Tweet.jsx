@@ -98,7 +98,7 @@ export const Tweet = ({tweet}) => {
           </div>
           <div  onClick={(e)=>{e.stopPropagation();handleToggleLike(tweet.id);}} className="flex group relative items-center gap-1 cursor-pointer">
           <span className="group-hover:bg-red-600   p-2 rounded-full">
-            {tweet.likes.length > 0 ?
+            {tweet?.likes.length > 0 ?
               <FaHeart className="size-4 text-red-500"/>
               :
               <FaRegHeart className="size-4 group-hover:text-red-500 opacity-100" />
@@ -106,7 +106,7 @@ export const Tweet = ({tweet}) => {
             
           
           </span>
-          <span className={`${tweet.likes.length > 0 && "text-red-500"} group-hover:text-red-500 absolute pl-7 z-10`}>{tweet?._count.likes}</span>
+          <span className={`${tweet?.likes.length > 0 && "text-red-500"} group-hover:text-red-500 absolute pl-7 z-10`}>{tweet?._count.likes}</span>
           <div className="absolute px-2 py-1 rounded-xs text-white bg-zinc-600 text-xs -left-1 top-8 group-hover:opacity-100 opacity-0">Like</div>
           </div>
           <div className="flex group relative items-center gap-1 cursor-pointer">
