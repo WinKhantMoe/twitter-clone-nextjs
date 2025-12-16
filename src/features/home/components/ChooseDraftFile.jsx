@@ -13,6 +13,7 @@ import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { get } from "idb-keyval";
 import useTweetDraftStore from "../store/useTweetDraftStore";
+import { useTweetActions } from "../hooks/useTweetActions";
 
 export const ChooseDraftFile = ({ setDraftOpen }) => {
   const {
@@ -30,7 +31,7 @@ export const ChooseDraftFile = ({ setDraftOpen }) => {
     mediaURL : mediaURL,
     tweetText  : tweetText,
   };
-  
+  const {handleCreateDraftTweet} = useTweetActions();
 
   const handleClick = () => {
     draftMediaRef.current.click();

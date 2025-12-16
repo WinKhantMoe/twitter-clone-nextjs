@@ -54,7 +54,7 @@ export const DraftList = ({ drafts,editMode,setDraftsOpen }) => {
           </div>
         </div>
       ) : (
-        <div className="min-h-[60vh] max-h-[60vh] max-w-fit ">
+        <div className="min-h-[60vh] max-h-[60vh] ">
           {drafts?.map((draft, index) => {
             return (
               <div
