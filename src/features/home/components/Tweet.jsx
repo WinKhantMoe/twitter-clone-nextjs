@@ -85,7 +85,7 @@ export const Tweet = ({tweet}) => {
             <FaRegComment className="size-4 group-hover:text-blue-500 opacity-100" />
           
           </span>
-          <span className="group-hover:text-blue-500 absolute pl-7 z-10">{tweet?._count.replies > 0 && tweet?._count.replies}</span>
+          <span className="group-hover:text-blue-500 absolute pl-7 z-10">{tweet?._count?.replies > 0 && tweet?._count?.replies}</span>
           <div className="absolute px-2 py-1 rounded-xs text-white bg-zinc-600 text-xs -left-1 top-8 group-hover:opacity-100 opacity-0">Reply</div>
           </div>
           <div className="flex group relative items-center gap-1 cursor-pointer">
@@ -93,7 +93,7 @@ export const Tweet = ({tweet}) => {
             <FaRetweet className="size-4 group-hover:text-green-500 opacity-100" />
           
           </span>
-          <span className="group-hover:text-green-500 absolute pl-7 z-10">{tweet?._count.retweets > 0 && tweet?._count.retweets}</span>
+          <span className="group-hover:text-green-500 absolute pl-7 z-10">{tweet?._count?.retweets > 0 && tweet?._count?.retweets}</span>
           <div className="absolute px-2 py-1 rounded-xs text-white bg-zinc-600 text-xs -left-1 top-8 group-hover:opacity-100 opacity-0">Repost</div>
           </div>
           <div  onClick={(e)=>{e.stopPropagation();handleToggleLike(tweet.id);}} className="flex group relative items-center gap-1 cursor-pointer">
@@ -106,7 +106,7 @@ export const Tweet = ({tweet}) => {
             
           
           </span>
-          <span className={`${tweet?.likes.length > 0 && "text-red-500"} group-hover:text-red-500 absolute pl-7 z-10`}>{tweet?._count.likes}</span>
+          <span className={`${tweet?.likes.length > 0 && "text-red-500"} group-hover:text-red-500 absolute pl-7 z-10`}>{tweet?._count?.likes}</span>
           <div className="absolute px-2 py-1 rounded-xs text-white bg-zinc-600 text-xs -left-1 top-8 group-hover:opacity-100 opacity-0">Like</div>
           </div>
           <div className="flex group relative items-center gap-1 cursor-pointer">

@@ -127,7 +127,7 @@ export const ChosenTweet = () => {
               <FaRegComment className="size-5 group-hover:text-blue-500 opacity-100" />
             </span>
             <span className="group-hover:text-blue-500 absolute pl-8 z-10">
-              {tweet[0]?._count.replies > 0 && tweet[0]?._count.replies}
+              {tweet[0]?._count?.replies > 0 && tweet[0]?._count?.replies}
             </span>
             <div className="absolute px-2 py-1 rounded-xs text-white bg-zinc-600 text-xs -left-1 top-8 group-hover:opacity-100 opacity-0">
               Reply
@@ -138,7 +138,7 @@ export const ChosenTweet = () => {
               <FaRetweet className="size-5 group-hover:text-green-500 opacity-100" />
             </span>
             <span className="group-hover:text-green-500 absolute pl-8 z-10">
-              {tweet[0]?._count.retweets > 0 && tweet[0]?._count.retweets}
+              {tweet[0]?._count?.retweets > 0 && tweet[0]?._count?.retweets}
             </span>
             <div className="absolute px-2 py-1 rounded-xs text-white bg-zinc-600 text-xs -left-1 top-8 group-hover:opacity-100 opacity-0">
               Repost
@@ -160,7 +160,7 @@ export const ChosenTweet = () => {
                 tweet[0]?.likes.length > 0 && "text-red-500"
               } group-hover:text-red-500 absolute pl-8 z-10`}
             >
-              {tweet[0]?._count.likes}
+              {tweet[0]?._count?.likes}
             </span>
             <div className="absolute px-2 py-1 rounded-xs text-white bg-zinc-600 text-xs -left-1 top-8 group-hover:opacity-100 opacity-0">
               Like
