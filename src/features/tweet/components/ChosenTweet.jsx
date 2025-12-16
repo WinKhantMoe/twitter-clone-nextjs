@@ -100,7 +100,7 @@ export const ChosenTweet = () => {
         <div className="text-lg">{tweet[0]?.content}</div>
         <div
           className={`grid ${
-            tweet[0]?.media.length > 1 ? "grid-cols-2" : "grid-cols-1"
+            tweet[0]?.media?.length > 1 ? "grid-cols-2" : "grid-cols-1"
           } mt-5 gap-1`}
         >
           {tweet[0]?.media?.map((item, index) => (
@@ -149,7 +149,7 @@ export const ChosenTweet = () => {
             className="flex group relative items-center gap-1 cursor-pointer"
           >
             <span className="group-hover:bg-red-600   p-2 rounded-full">
-              {tweet[0]?.likes.length > 0 ? (
+              {tweet[0]?.likes?.length > 0 ? (
                 <FaHeart className="size-5 text-red-500" />
               ) : (
                 <FaRegHeart className="size-5 group-hover:text-red-500 opacity-100" />
@@ -157,7 +157,7 @@ export const ChosenTweet = () => {
             </span>
             <span
               className={`${
-                tweet[0]?.likes.length > 0 && "text-red-500"
+                tweet[0]?.likes?.length > 0 && "text-red-500"
               } group-hover:text-red-500 absolute pl-8 z-10`}
             >
               {tweet[0]?._count?.likes}
