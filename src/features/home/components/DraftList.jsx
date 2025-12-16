@@ -5,20 +5,25 @@ import { Check } from "lucide-react";
 import { deleteDrafts } from "@/services/draft";
 import useAccountStore from "@/stores/useAccountStore";
 import { useLoadingBar } from "react-top-loading-bar";
+import useTweetDraftStore from "../store/useTweetDraftStore";
+import useTweetComposeOpen from "@/stores/useTweetComposeOpen";
+
 export const DraftList = ({ drafts,editMode,setDraftsOpen }) => {
-  const { setValue,getValues } = useFormContext();
+  const {setTweetText,setMediaURL,setMedia,setFullTweet} = useTweetDraftStore();
+  const { isOpen: tweetComposeOpen, setIsOpen: setTweetComposeOpen } = useTweetComposeOpen();
   const [selected, setSelected] = useState([]);
   const { token } = useAccountStore();
   const { start, complete } = useLoadingBar({
-    color: "blue",
+    color: "white",
     height: 2,
   });
-  const draftItem = getValues("draftItem");
+  
   
   const handleDelete = () => {
     start();
     deleteDrafts(selected,token);
     complete();
+    setTweetComposeOpen(false);
   };
   const handleSelect = (id) => {
     if (selected.length === 0) {
@@ -49,7 +54,7 @@ export const DraftList = ({ drafts,editMode,setDraftsOpen }) => {
           </div>
         </div>
       ) : (
-        <div className="min-h-[60vh] max-h-[60vh] ">
+        <div className="min-h-[60vh] max-h-[60vh] max-w-fit ">
           {drafts?.map((draft, index) => {
             return (
               <div
@@ -57,9 +62,9 @@ export const DraftList = ({ drafts,editMode,setDraftsOpen }) => {
                   if(editMode){
                     handleSelect(draft.id)
                   }else{
-                    setValue("draftMediaURL",draft.media);
-                    setValue("draftTweetText",draft.content);
-                    setValue("draftItem",draft);
+                    setMediaURL(draft.media);
+                    setTweetText(draft.content);
+                    setFullTweet(draft);
                     setDraftsOpen(false);
                   }
                   
@@ -67,7 +72,7 @@ export const DraftList = ({ drafts,editMode,setDraftsOpen }) => {
                 className={`flex min-h-20 justify-between cursor-pointer px-3 hover:bg-zinc-900 border-zinc-500 border-b py-3`}
                 key={index}
               >
-                <div className="flex   max-w-1/2 overflow-ellipsis items-center gap-3">
+                <div className="flex   max-w-1/2 truncate items-center gap-3">
                   {editMode === true && (
                     <div className="relative">
                       <div
@@ -84,7 +89,7 @@ export const DraftList = ({ drafts,editMode,setDraftsOpen }) => {
                     </div>
                   )}
 
-                  <div>{draft?.content}</div>
+                  <div className="">{draft?.content}</div>
                 </div>
 
                 <div

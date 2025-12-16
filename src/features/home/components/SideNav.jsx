@@ -27,18 +27,18 @@ import {
 import { TweetComposeModal } from "./TweetComposeModal";
 import useDraftOpen from "@/stores/useDraftOpen";
 import { useFormContext } from "react-hook-form";
+import { useState } from "react";
+import useTweetDraftStore from "../store/useTweetDraftStore";
 
 const SideNav = () => {
   const { account: account } = useAccountStore();
   const { isOpen, setIsOpen } = useTweetComposeOpen();
   const {isOpen:draftOpen,setIsOpen:draftSetIsOpen} = useDraftOpen();
-  const {getValues} = useFormContext();
-  const draftText = getValues("draftTweetText");
-  const draftMedia = getValues("draftMedia");
+  const {tweetText,media} = useTweetDraftStore();
   
 
   return (
-    <div className={` ${isOpen ? "ml-0 mr-10 w-1/4" : "ml-30 mr-5"} flex  flex-col   mt-2 transition-all `} >
+    <div className={` ${isOpen ? "ml-0 mr-10 w-1/4" : "ml-30 mr-5"} flex  flex-col h-screen sticky top-0 mt-2 transition-all `} >
       <div className={`flex flex-col  w-fit ${isOpen ? "ml-5" : "ml-3"}  `}>
         <div className="flex items-center">
         <div className="flex items-center justify-center rounded-full size-12 hover:border-zinc-900 hover:bg-zinc-900">
@@ -153,10 +153,10 @@ const SideNav = () => {
             
           </DialogTrigger>
           <DialogContent
-            className="bg-black top-10 left-1/2 -translate-x-1/2 translate-y-0  text-white min-w-[50%] max-h-[90%] scrollbar-thumb-hover  border-black px-0 "
+            className="bg-black top-10 left-1/2 -translate-x-1/2 translate-y-0  text-white min-w-[50%]  max-h-[90%] scrollbar-thumb-hover  border-black px-0 "
             onOpenAutoFocus={(e) => e.preventDefault()}
             onInteractOutside={(e) =>{ 
-              if(draftMedia?.length > 0 || draftText?.length > 0){
+              if(media?.length > 0 || tweetText?.length > 0){
                 e.preventDefault();
                 draftSetIsOpen(true);
               }

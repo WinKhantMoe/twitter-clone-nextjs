@@ -4,15 +4,15 @@ import { XIcon } from "lucide-react";
 import { useEffect, useState,useRef } from "react";
 import { useFormContext } from "react-hook-form"
 import { FaXing } from "react-icons/fa";
+import useTweetDraftStore from "../store/useTweetDraftStore";
 
 
 export const DraftImagePreview = () =>{
-  const {getValues,setValue,watch } = useFormContext();
-  const urls = getValues("draftMediaURL");
-  
-  const draftHalfPastVH = watch("draftHalfPastVH");
+  const {mediaURL,setMediaURL,dialogHalfPastVH,setDialogHalfPastVH} = useTweetDraftStore();
+
+  const urls = mediaURL;
   const targetRef = useRef(null);
-  
+  console.log(urls);
 
   const count = urls.length;
   
@@ -29,9 +29,9 @@ export const DraftImagePreview = () =>{
     const newURL = urls.filter((url) => index !== urls.indexOf(url));
     
     if(newURL.length === 0){
-      setValue("draftHalfPastVH",false);
+      setDialogHalfPastVH(false);
     }
-    setValue("draftMediaURL",newURL);
+    setMediaURL(newURL);
     
      
   }
@@ -40,8 +40,7 @@ export const DraftImagePreview = () =>{
     
     const observer = new IntersectionObserver(([entry]) => {
           
-            setValue("draftHalfPastVH",entry.isIntersecting);
-            console.log("ttrdstydt");
+             setDialogHalfPastVH(entry.isIntersecting);
           
       
     }, {threshold: 1});

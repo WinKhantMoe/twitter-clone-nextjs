@@ -13,17 +13,22 @@ import useTweetComposeOpen from "@/stores/useTweetComposeOpen";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { get } from "idb-keyval";
 import { useFormContext } from "react-hook-form";
+import useTweetDraftStore from "../store/useTweetDraftStore";
+import { useTweetActions } from "../hooks/useTweetActions";
 
 export const DraftSaveModal = () => {
-  const {resetField,setValue,handleCreateDraft,getValues} = useFormContext();
   const {isOpen : draftOpen, setIsOpen :setDraftOpen} = useDraftOpen();
   const {isOpen,setIsOpen} = useTweetComposeOpen();
-  const data = getValues();
+  const {media,tweetText,mediaURL,clearDraft} = useTweetDraftStore();
+  const {handleCreateDraft} = useTweetActions();
+  const data = {
+    tweetText : tweetText,
+    media : media,
+    mediaURL : mediaURL
+  }
 
   const discard = () =>{
-    resetField("draftMedia");
-    resetField("draftTweetText");
-    setValue("draftMediaURL",undefined);
+    clearDraft();
     setIsOpen(isOpen);
     setDraftOpen(draftOpen);
   }

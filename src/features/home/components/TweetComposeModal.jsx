@@ -21,24 +21,20 @@ import { ChooseDraftFile } from "./ChooseDraftFile";
 import { DraftImagePreview } from "./DraftImagePreview";
 import { useState } from "react";
 import { DraftsAndSchedule } from "./DraftsAndSchedule";
+import useTweetDraftStore from "../store/useTweetDraftStore";
+import { set } from "idb-keyval";
 export const TweetComposeModal = () => {
   const { account } = useAccountStore();
   const [isDraftsOpen, setDraftsOpen] = useState(false);
   const [turnReplyOn, setTurnReplyOn] = useState(false);
   const [turnAudienceOn, setTurnAudienceOn] = useState(false);
-  const {
-    register,
-    watch,
-    getValues,
-    resetField,
-    formState = { errors },
-  } = useFormContext();
+  
   const { isOpen, setIsOpen } = useDraftOpen();
   const { isOpen: tweetComposeOpen, setIsOpen: setTweetComposeOpen } = useTweetComposeOpen();
 
-  const draftTweetText = watch("draftTweetText");
-  const draftMediaURL = getValues("draftMediaURL");
+  const {tweetText,setTweetText,mediaURL,media} = useTweetDraftStore();
 
+  console.log(media);
   return (
     <>
       {isDraftsOpen ? (
@@ -51,7 +47,7 @@ export const TweetComposeModal = () => {
             </VisuallyHidden>
             <div className="flex  items-center justify-between px-2">
               <Dialog open={isOpen} onOpenChange={setIsOpen}>
-                {draftMediaURL?.length > 0 || draftTweetText?.length > 0 ? (
+                {mediaURL?.length > 0 || tweetText?.length > 0 ? (
                   <DialogTrigger className=" cursor-pointer">
                     <span
                       className={`text-xl px-2 cursor-pointer
@@ -109,9 +105,10 @@ export const TweetComposeModal = () => {
                   placeholder="What's happening?"
                   className={`text-xl ml-3 w-full 
              font-semibold focus:outline-none focus:ring-0  text-white`}
-                  {...register("draftTweetText")}
+                  onChange={(e)=>setTweetText(e.target.value)}
+                  value={tweetText}
                 />
-                {draftMediaURL && <DraftImagePreview />}
+                {mediaURL && <DraftImagePreview />}
               </div>
             </div>
 

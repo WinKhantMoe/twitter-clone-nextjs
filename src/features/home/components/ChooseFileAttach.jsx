@@ -3,10 +3,11 @@ import { useFormContext } from "react-hook-form";
 import { use, useRef,useEffect } from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
-
+import { useTweetActions } from "../hooks/useTweetActions";
 
 export const ChooseFileAttach = ({setDraftOpen}) => {
-  const {getValues,watch,register,setValue,handleCreateTweet} = useFormContext();
+  const {getValues,watch,register,setValue} = useFormContext();
+  const {handleCreateTweet} = useTweetActions();
   const mediaRef = useRef(null);
   const text = watch("tweetText");
   const media = watch("media");
@@ -110,7 +111,7 @@ export const ChooseFileAttach = ({setDraftOpen}) => {
             </div>
             <PlusIcon className="border cursor-pointer text-blue-500 size-6 p-1 rounded-full border-zinc-500" />
           </div>
-          <button onClick={()=>handleCreateTweet(allData)} className={`bg-white cursor-pointer ${text?.length > 0 || text === ''|| media?.length > 0 && "opacity-50 pointer-events-none"} text-black font-semibold px-4 py-1.5 rounded-3xl`}>
+          <button onClick={()=>{handleCreateTweet(allData);reset()}} className={`bg-white cursor-pointer ${text?.length > 0 || text === ''|| media?.length > 0 && "opacity-50 pointer-events-none"} text-black font-semibold px-4 py-1.5 rounded-3xl`}>
             Post
           </button>
         </div>

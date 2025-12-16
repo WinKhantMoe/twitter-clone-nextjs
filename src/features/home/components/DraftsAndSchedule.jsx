@@ -33,15 +33,16 @@ export const DraftsAndSchedule = ({setDraftsOpen}) => {
     mutate: draftsMutate,
   } = useSWRInfinite(
     shouldFetch ? getKeyForDrafts : null,
-    (key) => fetchDrafts(key,{id :account.id}, token),
+    (key) => fetchDrafts(key, token),
     {
       keepPreviousData: true,
     }
   );
 
   const drafts = draftsData ? draftsData.flatMap((data) => data.drafts) : [];
+  console.log(drafts);
   return(
-    <div className="">
+    <div className="overflow-hidden">
       <div className="flex justify-between items-center px-5  ">
         <div className="flex items-center gap-5">
         <ArrowLeft onClick={()=>setDraftsOpen(false)} className="hover:bg-zinc-900 p-2 rounded-full cursor-pointer size-10"/>

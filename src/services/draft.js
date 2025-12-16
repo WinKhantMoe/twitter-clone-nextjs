@@ -12,10 +12,9 @@ export const saveDraft = (data,token) =>{
         }
       })
 }
-export const fetchDrafts = (key,data,token) =>{
+export const fetchDrafts = (key,token) =>{
   return fetch(key,{
-    method:"POST",
-    body:JSON.stringify(data),
+    method:"GET",
     headers : {
       "Content-Type" : "application/json",
       Accept : "*/*",
